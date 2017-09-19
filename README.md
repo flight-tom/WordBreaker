@@ -1,0 +1,2 @@
+# WordBreaker
+Analyze Chinese words
