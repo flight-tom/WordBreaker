@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordBreaker", "WordBreaker.csproj", "{70A1154B-1256-43F4-95EA-286AE9F4E259}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "..\UnitTestProject\UnitTestProject.csproj", "{79C114E3-4404-4D07-B13F-8E323B77360B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runner", "Runner\Runner.csproj", "{D7AF8F4A-DD55-4193-A363-AB60DD696E0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70A1154B-1256-43F4-95EA-286AE9F4E259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A1154B-1256-43F4-95EA-286AE9F4E259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A1154B-1256-43F4-95EA-286AE9F4E259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A1154B-1256-43F4-95EA-286AE9F4E259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C114E3-4404-4D07-B13F-8E323B77360B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C114E3-4404-4D07-B13F-8E323B77360B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C114E3-4404-4D07-B13F-8E323B77360B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C114E3-4404-4D07-B13F-8E323B77360B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7AF8F4A-DD55-4193-A363-AB60DD696E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7AF8F4A-DD55-4193-A363-AB60DD696E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7AF8F4A-DD55-4193-A363-AB60DD696E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7AF8F4A-DD55-4193-A363-AB60DD696E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

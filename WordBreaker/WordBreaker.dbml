@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WordBreaker" Class="WordBreakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=WordBreaker;Integrated Security=True" SettingsObjectName="WordBreaker.Properties.Settings" SettingsPropertyName="WordBreakerConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.DeleteKeywords" Method="DeleteKeywords">
+    <Parameter Name="pHitCountThreshold" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateKeyword" Method="UpdateKeyword">
+    <Parameter Name="pKeyWord" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="pPositiveScore" Type="System.Double" DbType="Float" />
+    <Parameter Name="pHitCountInc" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertKeyword" Method="InsertKeyword">
+    <Parameter Name="pKeyWord" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="pPositiveScore" Type="System.Double" DbType="Float" />
+    <Parameter Name="pSourceUrlID" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertVisitedUrl" Method="InsertVisitedUrl">
+    <Parameter Name="pUrl" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="pHmac" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="oID" Type="System.Int64" DbType="BigInt" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
