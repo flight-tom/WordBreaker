@@ -4,11 +4,41 @@
     <Parameter Name="pHitCountThreshold" Type="System.Int64" DbType="BigInt" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.UpdateKeyword" Method="UpdateKeyword">
-    <Parameter Name="pKeyWord" Type="System.String" DbType="NVarChar(10)" />
-    <Parameter Name="pPositiveScore" Type="System.Double" DbType="Float" />
-    <Parameter Name="pHitCountInc" Type="System.Int64" DbType="BigInt" />
+  <Function Name="dbo.InsertVisitedUrl" Method="InsertVisitedUrl">
+    <Parameter Name="pUrl" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="pHmac" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="oID" Type="System.Int64" DbType="BigInt" Direction="InOut" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetTopHotKeywords" Method="GetTopHotKeywords">
+    <Parameter Name="pTop" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetTopHotKeywordsResult">
+      <Column Name="Keyword" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PositiveScore" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SourceUrlID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="HitCount" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTopNagtiveKeywords" Method="GetTopNagtiveKeywords">
+    <Parameter Name="pTop" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetTopNagtiveKeywordsResult">
+      <Column Name="Keyword" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PositiveScore" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SourceUrlID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="HitCount" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTopPositiveKeywords" Method="GetTopPositiveKeywords">
+    <Parameter Name="pTop" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetTopPositiveKeywordsResult">
+      <Column Name="Keyword" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PositiveScore" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SourceUrlID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="HitCount" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
   <Function Name="dbo.InsertKeyword" Method="InsertKeyword">
     <Parameter Name="pKeyWord" Type="System.String" DbType="NVarChar(10)" />
@@ -16,10 +46,15 @@
     <Parameter Name="pSourceUrlID" Type="System.Int64" DbType="BigInt" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.InsertVisitedUrl" Method="InsertVisitedUrl">
-    <Parameter Name="pUrl" Type="System.String" DbType="VarChar(500)" />
-    <Parameter Name="pHmac" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="oID" Type="System.Int64" DbType="BigInt" Direction="InOut" />
-    <Return Type="System.Int32" />
+  <Function Name="dbo.GetKeywordInfo" Method="GetKeywordInfo">
+    <Parameter Name="pKeyword" Type="System.String" DbType="NVarChar(10)" />
+    <ElementType Name="GetKeywordInfoResult">
+      <Column Name="Keyword" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PositiveScore" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SourceUrlID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="HitCount" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Url" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

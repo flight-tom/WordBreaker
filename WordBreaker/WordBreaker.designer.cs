@@ -69,11 +69,33 @@ namespace WordBreaker
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateKeyword")]
-		public int UpdateKeyword([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string pKeyWord, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> pPositiveScore, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] System.Nullable<long> pHitCountInc)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertVisitedUrl")]
+		public int InsertVisitedUrl([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(500)")] string pUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string pHmac, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] ref System.Nullable<long> oID)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pKeyWord, pPositiveScore, pHitCountInc);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pUrl, pHmac, oID);
+			oID = ((System.Nullable<long>)(result.GetParameterValue(2)));
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetTopHotKeywords")]
+		public ISingleResult<GetTopHotKeywordsResult> GetTopHotKeywords([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pTop)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pTop);
+			return ((ISingleResult<GetTopHotKeywordsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetTopNagtiveKeywords")]
+		public ISingleResult<GetTopNagtiveKeywordsResult> GetTopNagtiveKeywords([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pTop)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pTop);
+			return ((ISingleResult<GetTopNagtiveKeywordsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetTopPositiveKeywords")]
+		public ISingleResult<GetTopPositiveKeywordsResult> GetTopPositiveKeywords([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pTop)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pTop);
+			return ((ISingleResult<GetTopPositiveKeywordsResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertKeyword")]
@@ -83,12 +105,421 @@ namespace WordBreaker
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertVisitedUrl")]
-		public int InsertVisitedUrl([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(500)")] string pUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string pHmac, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="BigInt")] ref System.Nullable<long> oID)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetKeywordInfo")]
+		public ISingleResult<GetKeywordInfoResult> GetKeywordInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string pKeyword)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pUrl, pHmac, oID);
-			oID = ((System.Nullable<long>)(result.GetParameterValue(2)));
-			return ((int)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pKeyword);
+			return ((ISingleResult<GetKeywordInfoResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class GetTopHotKeywordsResult
+	{
+		
+		private string _Keyword;
+		
+		private double _PositiveScore;
+		
+		private long _SourceUrlID;
+		
+		private long _HitCount;
+		
+		private System.DateTime _CreatedAt;
+		
+		public GetTopHotKeywordsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Keyword", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string Keyword
+		{
+			get
+			{
+				return this._Keyword;
+			}
+			set
+			{
+				if ((this._Keyword != value))
+				{
+					this._Keyword = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PositiveScore", DbType="Float NOT NULL")]
+		public double PositiveScore
+		{
+			get
+			{
+				return this._PositiveScore;
+			}
+			set
+			{
+				if ((this._PositiveScore != value))
+				{
+					this._PositiveScore = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceUrlID", DbType="BigInt NOT NULL")]
+		public long SourceUrlID
+		{
+			get
+			{
+				return this._SourceUrlID;
+			}
+			set
+			{
+				if ((this._SourceUrlID != value))
+				{
+					this._SourceUrlID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HitCount", DbType="BigInt NOT NULL")]
+		public long HitCount
+		{
+			get
+			{
+				return this._HitCount;
+			}
+			set
+			{
+				if ((this._HitCount != value))
+				{
+					this._HitCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this._CreatedAt = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetTopNagtiveKeywordsResult
+	{
+		
+		private string _Keyword;
+		
+		private double _PositiveScore;
+		
+		private long _SourceUrlID;
+		
+		private long _HitCount;
+		
+		private System.DateTime _CreatedAt;
+		
+		public GetTopNagtiveKeywordsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Keyword", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string Keyword
+		{
+			get
+			{
+				return this._Keyword;
+			}
+			set
+			{
+				if ((this._Keyword != value))
+				{
+					this._Keyword = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PositiveScore", DbType="Float NOT NULL")]
+		public double PositiveScore
+		{
+			get
+			{
+				return this._PositiveScore;
+			}
+			set
+			{
+				if ((this._PositiveScore != value))
+				{
+					this._PositiveScore = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceUrlID", DbType="BigInt NOT NULL")]
+		public long SourceUrlID
+		{
+			get
+			{
+				return this._SourceUrlID;
+			}
+			set
+			{
+				if ((this._SourceUrlID != value))
+				{
+					this._SourceUrlID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HitCount", DbType="BigInt NOT NULL")]
+		public long HitCount
+		{
+			get
+			{
+				return this._HitCount;
+			}
+			set
+			{
+				if ((this._HitCount != value))
+				{
+					this._HitCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this._CreatedAt = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetTopPositiveKeywordsResult
+	{
+		
+		private string _Keyword;
+		
+		private double _PositiveScore;
+		
+		private long _SourceUrlID;
+		
+		private long _HitCount;
+		
+		private System.DateTime _CreatedAt;
+		
+		public GetTopPositiveKeywordsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Keyword", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string Keyword
+		{
+			get
+			{
+				return this._Keyword;
+			}
+			set
+			{
+				if ((this._Keyword != value))
+				{
+					this._Keyword = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PositiveScore", DbType="Float NOT NULL")]
+		public double PositiveScore
+		{
+			get
+			{
+				return this._PositiveScore;
+			}
+			set
+			{
+				if ((this._PositiveScore != value))
+				{
+					this._PositiveScore = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceUrlID", DbType="BigInt NOT NULL")]
+		public long SourceUrlID
+		{
+			get
+			{
+				return this._SourceUrlID;
+			}
+			set
+			{
+				if ((this._SourceUrlID != value))
+				{
+					this._SourceUrlID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HitCount", DbType="BigInt NOT NULL")]
+		public long HitCount
+		{
+			get
+			{
+				return this._HitCount;
+			}
+			set
+			{
+				if ((this._HitCount != value))
+				{
+					this._HitCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this._CreatedAt = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetKeywordInfoResult
+	{
+		
+		private string _Keyword;
+		
+		private double _PositiveScore;
+		
+		private long _SourceUrlID;
+		
+		private long _HitCount;
+		
+		private System.DateTime _CreatedAt;
+		
+		private string _Url;
+		
+		public GetKeywordInfoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Keyword", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string Keyword
+		{
+			get
+			{
+				return this._Keyword;
+			}
+			set
+			{
+				if ((this._Keyword != value))
+				{
+					this._Keyword = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PositiveScore", DbType="Float NOT NULL")]
+		public double PositiveScore
+		{
+			get
+			{
+				return this._PositiveScore;
+			}
+			set
+			{
+				if ((this._PositiveScore != value))
+				{
+					this._PositiveScore = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceUrlID", DbType="BigInt NOT NULL")]
+		public long SourceUrlID
+		{
+			get
+			{
+				return this._SourceUrlID;
+			}
+			set
+			{
+				if ((this._SourceUrlID != value))
+				{
+					this._SourceUrlID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HitCount", DbType="BigInt NOT NULL")]
+		public long HitCount
+		{
+			get
+			{
+				return this._HitCount;
+			}
+			set
+			{
+				if ((this._HitCount != value))
+				{
+					this._HitCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this._CreatedAt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Url", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Url
+		{
+			get
+			{
+				return this._Url;
+			}
+			set
+			{
+				if ((this._Url != value))
+				{
+					this._Url = value;
+				}
+			}
 		}
 	}
 }
