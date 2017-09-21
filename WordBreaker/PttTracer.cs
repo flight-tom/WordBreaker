@@ -92,9 +92,14 @@ namespace WordBreaker
                 {
                     if (d2.Attributes["class"] != null && d2.Attributes["class"].Value == "push")
                     {
-                        var d3 = d2.SelectSingleNode("span[@class='f1 hl push-tag']");
                         string push_direct = "";
-                        if (d3 != null) push_direct = d3.InnerText.Trim();
+                        var d3 = d2.SelectSingleNode("span[@class='f1 hl push-tag']");
+                        if (d3 == null) 
+                            d3 = d2.SelectSingleNode("span[@class='hl push-tag']");
+
+                        if (d3 != null)
+                            push_direct = d3.InnerText.Trim();
+
                         var push_str = CleanString(d2.SelectSingleNode("span[@class='f3 push-content']").InnerText.Trim());
                         float positive_score = 0;
                         switch (push_direct)
